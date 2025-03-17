@@ -42,7 +42,7 @@ class StepsController < ApplicationController
 
       # Save current state in session
       session[:quiz_forms] ||= []
-      session[:quiz_forms][@quiz_form.current_step + 1] = @quiz_form.attributes
+      session[:quiz_forms][@quiz_form.current_step - 1] = @quiz_form.attributes
 
       next_step
     else
