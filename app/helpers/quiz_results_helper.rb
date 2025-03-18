@@ -47,7 +47,7 @@ module QuizResultsHelper
   def score_percentage(quiz_results)
     return 0 if TOTAL_QUESTIONS.zero?
 
-    (total_correct_answers(quiz_results).to_f / TOTAL_QUESTIONS * 100)
+    (total_correct_answers(quiz_results).to_f / TOTAL_QUESTIONS * 100).round(2)
   end
 
   # Checks if a user's answer matches the correct answer.
@@ -62,7 +62,7 @@ module QuizResultsHelper
   def check_answer(correct_answer, user_answer)
     return false if correct_answer == 'N/A' || user_answer == 'N/A'
 
-    correct_answer.strip.downcase
+    user_answer.strip.downcase == correct_answer.strip.downcase
   end
 
   # Generates a table row displaying question, correct answer, user's answer, and result (Correct/Incorrect).
@@ -124,7 +124,7 @@ module QuizResultsHelper
   # - String containing the user's answer or "N/A" if not found.
   #
   def fetch_user_answer(answers, question_index)
-    answers[1][question_index]
+    answers[question_index]
   rescue StandardError
     'N/A'
   end
