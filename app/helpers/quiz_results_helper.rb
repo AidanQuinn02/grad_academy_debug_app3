@@ -124,7 +124,7 @@ module QuizResultsHelper
   # - String containing the user's answer or "N/A" if not found.
   #
   def fetch_user_answer(answers, question_index)
-    answers[question_index]
+    answers[1][question_index]
   rescue StandardError
     'N/A'
   end
@@ -139,7 +139,11 @@ module QuizResultsHelper
   # - String indicating whether the user's answer was "Correct" or "Incorrect".
   #
   def evaluate_result(correct_answer, user_answer)
-    'Incorrect'
+    if correct_answer.strip.downcase == user_answer.strip.downcase
+      'Correct'
+    else
+      'Incorrect'
+    end 
   end
 
   # Generates table data (`<td>`) for question, correct answer, user's answer, and result.
