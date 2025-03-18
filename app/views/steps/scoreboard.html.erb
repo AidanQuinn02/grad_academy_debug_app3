@@ -5,6 +5,15 @@
 
   <table class="table mt-4">
     <tbody class="table-group-divider border-danger">
+    <thead>
+      <tr>
+        <th><%= 'Quiz' %></th>
+        <th><%= t('scoreboard.table.user') %></th>
+        <th><%= t('scoreboard.table.date') %></th>
+        <th><%= t('scoreboard.table.score') %></th>
+        <th><%= t('scoreboard.table.download_results') %></th>
+      </tr>
+    </thead>
       <% @top_scores.each_with_index do |answer, _index| %>
         <tr>
           <td>
