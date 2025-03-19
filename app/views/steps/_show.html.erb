@@ -1,5 +1,17 @@
 <% provide(:title, "Page #{@quiz_form.current_step} of #{QuizConstantsHelper::NUMBER_OF_PAGES}") %>
 <div class="container w-75 mt-5 mb-4 pt-5">
+<!-- Progress Bar -->
+  <div class="progress mb-4">
+    <div
+      class="progress-bar bg-danger"
+      role="progressbar"
+      style="width: <%= (@quiz_form.current_step.to_f / @quiz_form.total_steps) * 100 %>%"
+      aria-valuenow="<%= (@quiz_form.current_step.to_f / @quiz_form.total_steps) * 100 %>"
+      aria-valuemin="0"
+      aria-valuemax="100">
+      <%= number_to_percentage((@quiz_form.current_step.to_f / @quiz_form.total_steps) * 100, precision: 0) %>
+    </div>
+  </div>
   <h2><%= @quiz_form.current_page_range %></h2>
   <hr class="border border-danger w-100 border-2 my-2">
   <% question_index = 0 %>
@@ -28,3 +40,18 @@
     </div>
   <% end %>
 </div>
+<style>
+.progress {
+  height: 20px;
+  background-color: #F5F5F5;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.progress-bar {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: center;
+  color: #fff;
+}
+</style>
